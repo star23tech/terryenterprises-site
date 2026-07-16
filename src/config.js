@@ -15,5 +15,4 @@ export const lawnStoryConfig = {
     framePath: (index) => assetUrl(`lawn-sequence-mobile/frame-${String(index + 1).padStart(4, '0')}.webp`),
     poster: assetUrl('assets/lawn-poster.png'),
   },
-  mower: assetUrl('assets/mower-operator-v2.png'),
 };

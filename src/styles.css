@@ -29,11 +29,10 @@ a { color: inherit; }
 .story-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .stage-grain { position: absolute; inset: 0; pointer-events: none; z-index: 2; opacity: .055; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E"); }
 .story-overlay { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
-.chapter { position: absolute; left: clamp(24px, 7vw, 118px); top: 50%; transform: translateY(-50%); width: min(510px, calc(100vw - 96px)); opacity: 0; will-change: opacity, transform, filter; }
-.chapter-1, .chapter-2 { left: auto; right: clamp(70px, 8vw, 136px); }
+.chapter { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(680px, calc(100vw - 96px)); text-align: center; opacity: 0; will-change: opacity, transform, filter; }
 .chapter:first-child { opacity: 1; }
 .chapter h2 { margin: 0 0 20px; max-width: 530px; font: 500 clamp(38px, 4.5vw, 72px)/.98 'Manrope', sans-serif; letter-spacing: -.045em; text-wrap: balance; text-shadow: 0 2px 22px rgba(0,0,0,.35); }
-.chapter > p:last-of-type:not(.chapter-eyebrow) { max-width: 430px; margin: 0; color: rgba(255,255,255,.78); line-height: 1.65; font-size: clamp(14px, 1.1vw, 17px); text-shadow: 0 1px 12px rgba(0,0,0,.6); }
+.chapter > p:last-of-type:not(.chapter-eyebrow) { max-width: 430px; margin: 0 auto; color: rgba(255,255,255,.78); line-height: 1.65; font-size: clamp(14px, 1.1vw, 17px); text-shadow: 0 1px 12px rgba(0,0,0,.6); }
 .story-button, .light-button { pointer-events: auto; display: inline-flex; align-items: center; gap: 32px; margin-top: 30px; padding: 15px 18px 15px 20px; background: #f0f1e8; color: #152218; border-radius: 2px; text-decoration: none; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .09em; transition: transform .2s, background .2s; }
 .story-button:hover, .story-button:focus-visible, .light-button:hover, .light-button:focus-visible { background: white; transform: translateY(-2px); outline: 2px solid white; outline-offset: 3px; }
 .progress-indicator { position: absolute; z-index: 4; right: clamp(20px, 3vw, 48px); top: 50%; transform: translateY(-50%); display: grid; justify-items: center; gap: 10px; font: 500 9px/1 'DM Sans'; letter-spacing: .14em; color: rgba(255,255,255,.65); }

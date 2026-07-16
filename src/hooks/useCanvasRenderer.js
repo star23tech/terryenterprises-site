@@ -48,10 +48,10 @@ export function useCanvasRenderer({ canvasRef, progressRef, activeRef, config, e
       if (!disposed) onStatus?.({ state: 'ready', progress: 1 });
     }
 
-    Promise.all([loadImage(source.poster), loadImage(config.mower)])
-      .then(([poster, mower]) => {
+    loadImage(source.poster)
+      .then((poster) => {
         if (disposed) return;
-        assets = { poster, mower };
+        assets = { poster };
         if (config.mode === 'sequence' && !reducedMotion) {
           framesRef.current[0] = poster;
           preloadSequence();

@@ -26,20 +26,13 @@ export default function StoryOverlay({ stageRef }) {
       const isFinal = index === chapters.length - 1;
       const outOpacity = isFinal ? 1 : (end - p) / feather;
       const opacity = Math.max(0, Math.min(1, inOpacity, outOpacity));
-      const exitOffset = isFinal ? 0 : (1 - Math.min(1, Math.max(0, outOpacity))) * 12;
-      const offset = (1 - Math.min(1, Math.max(0, inOpacity))) * 20 - exitOffset;
-      const mobile = window.matchMedia('(max-width: 720px)').matches;
       block.style.opacity = opacity;
-      if (mobile) {
-        const entry = mobileEntryOffsets[index];
-        const entering = 1 - Math.min(1, Math.max(0, inOpacity));
-        const exiting = isFinal ? 0 : 1 - Math.min(1, Math.max(0, outOpacity));
-        const x = entry.x * entering - entry.x * .35 * exiting;
-        const y = entry.y * entering - entry.y * .35 * exiting;
-        block.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-      } else {
-        block.style.transform = `translateY(${offset}px)`;
-      }
+      const entry = mobileEntryOffsets[index];
+      const entering = 1 - Math.min(1, Math.max(0, inOpacity));
+      const exiting = isFinal ? 0 : 1 - Math.min(1, Math.max(0, outOpacity));
+      const x = entry.x * entering - entry.x * .35 * exiting;
+      const y = entry.y * entering - entry.y * .35 * exiting;
+      block.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
       block.style.filter = `blur(${(1 - opacity) * 5}px)`;
       block.setAttribute('aria-hidden', opacity < .15 ? 'true' : 'false');
     });
