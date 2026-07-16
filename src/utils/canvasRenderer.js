@@ -45,8 +45,8 @@ function traceCurve(ctx, progress, width, height) {
 function mobilePoint(t, width, height) {
   const eased = 1 - (1 - t) ** 3;
   return {
-    x: width * (.43 + eased * .09),
-    y: height * (.76 - eased * .06),
+    x: width * (.43 + eased * .055),
+    y: height * (.77 - eased * .12),
   };
 }
 
@@ -71,8 +71,8 @@ export function drawPrototype(ctx, assets, progress, width, height) {
   const mobileProgress = mowerProgress / .82;
 
   if (mobile) {
-    // The portrait composition creates motion primarily by panning through the
-    // wide lawn image while the mower remains large and nearly stationary.
+    // The portrait composition combines the lawn pan with a compact,
+    // upward-biased mower path that suits the narrower viewport.
     drawCoverPanned(ctx, assets.poster, width, height, .38 + mobileProgress * .20);
   } else {
     drawCover(ctx, assets.poster, width, height);
