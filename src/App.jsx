@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import LawnScrollStory from './components/LawnScrollStory';
 import PlaceholderPage from './components/PlaceholderPage';
 import SiteHeader from './components/SiteHeader';
@@ -5,7 +6,13 @@ import SiteFooter from './components/SiteFooter';
 import ReviewsSection from './components/ReviewsSection';
 
 export default function App() {
-  const route = window.location.pathname.replace(/^\/+|\/+$/g, '');
+  const getRoute = () => window.location.hash.replace(/^#\/?|\/+$/g, '');
+  const [route, setRoute] = useState(getRoute);
+  useEffect(() => {
+    const updateRoute = () => setRoute(getRoute());
+    window.addEventListener('hashchange', updateRoute);
+    return () => window.removeEventListener('hashchange', updateRoute);
+  }, []);
   if (['services', 'about', 'our-work'].includes(route)) {
     return <PlaceholderPage page={route} />;
   }

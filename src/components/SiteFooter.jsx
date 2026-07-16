@@ -1,14 +1,15 @@
 export default function SiteFooter() {
+  const base = import.meta.env.BASE_URL;
   return (
     <footer className="site-footer">
       <div className="footer-main">
-        <a className="footer-brand" href="/" aria-label="Terry Enterprises Lawn Care home">
-          <img src="/assets/terry-enterprises-logo.png" alt="Terry Enterprises Lawn Care" />
+        <a className="footer-brand" href={base} aria-label="Terry Enterprises Lawn Care home">
+          <img src={`${base}assets/terry-enterprises-logo.png`} alt="Terry Enterprises Lawn Care" />
         </a>
         <nav className="footer-nav" aria-label="Footer navigation">
-          <a href="/services">Services</a>
-          <a href="/about">About</a>
-          <a href="/our-work">Our Work</a>
+          <a href={`${base}#/services`}>Services</a>
+          <a href={`${base}#/about`}>About</a>
+          <a href={`${base}#/our-work`}>Our Work</a>
         </nav>
         <div className="footer-contact">
           <a href="tel:+15408159402">(540) 815-9402</a>
