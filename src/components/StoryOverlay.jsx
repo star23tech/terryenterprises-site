@@ -21,7 +21,9 @@ export default function StoryOverlay({ stageRef }) {
     const blocks = [...rootRef.current.querySelectorAll('.chapter')];
     const update = ({ detail: p }) => blocks.forEach((block, index) => {
       const [start, end] = chapters[index].range;
-      const feather = Math.min(.035, (end - start) * .22);
+      // Use a broad transition window so each chapter eases into view instead
+      // of appearing immediately after a small scroll movement.
+      const feather = Math.min(.075, (end - start) * .3);
       const inOpacity = (p - start) / feather;
       const isFinal = index === chapters.length - 1;
       const outOpacity = isFinal ? 1 : (end - p) / feather;
