@@ -68,12 +68,12 @@ export function drawPrototype(ctx, assets, progress, width, height) {
   // Hold the mower once the final chapter arrives. The remaining scroll
   // distance lets the closing message stay visible before the stage unpins.
   const mowerProgress = Math.min(progress, .82);
-  const mobileProgress = mowerProgress / .82;
+  // On portrait screens the canvas remains a stable backdrop while scroll
+  // progress drives only the chapter copy transitions.
+  const mobileProgress = 0;
 
   if (mobile) {
-    // The portrait composition combines the lawn pan with a compact,
-    // upward-biased mower path that suits the narrower viewport.
-    drawCoverPanned(ctx, assets.poster, width, height, .38 + mobileProgress * .20);
+    drawCoverPanned(ctx, assets.poster, width, height, .46);
   } else {
     drawCover(ctx, assets.poster, width, height);
   }
