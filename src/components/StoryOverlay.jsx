@@ -7,6 +7,13 @@ const chapters = [
   { range: [.79, 1], eyebrow: 'Your lawn, elevated', title: 'Ready for a Better-Looking Lawn?', cta: true },
 ];
 
+const mobileEntryOffsets = [
+  { x: -42, y: 18 },
+  { x: 44, y: -12 },
+  { x: -24, y: -38 },
+  { x: 34, y: 28 },
+];
+
 export default function StoryOverlay({ stageRef }) {
   const rootRef = useRef(null);
   useEffect(() => {
@@ -21,8 +28,18 @@ export default function StoryOverlay({ stageRef }) {
       const opacity = Math.max(0, Math.min(1, inOpacity, outOpacity));
       const exitOffset = isFinal ? 0 : (1 - Math.min(1, Math.max(0, outOpacity))) * 12;
       const offset = (1 - Math.min(1, Math.max(0, inOpacity))) * 20 - exitOffset;
+      const mobile = window.matchMedia('(max-width: 720px)').matches;
       block.style.opacity = opacity;
-      block.style.transform = `translateY(${offset}px)`;
+      if (mobile) {
+        const entry = mobileEntryOffsets[index];
+        const entering = 1 - Math.min(1, Math.max(0, inOpacity));
+        const exiting = isFinal ? 0 : 1 - Math.min(1, Math.max(0, outOpacity));
+        const x = entry.x * entering - entry.x * .35 * exiting;
+        const y = entry.y * entering - entry.y * .35 * exiting;
+        block.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+      } else {
+        block.style.transform = `translateY(${offset}px)`;
+      }
       block.style.filter = `blur(${(1 - opacity) * 5}px)`;
       block.setAttribute('aria-hidden', opacity < .15 ? 'true' : 'false');
     });

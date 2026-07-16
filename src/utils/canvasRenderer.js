@@ -61,6 +61,15 @@ function traceMobileCurve(ctx, progress, width, height) {
   }
 }
 
+function drawShade(ctx, width, height) {
+  const shade = ctx.createLinearGradient(0, 0, width, 0);
+  shade.addColorStop(0, 'rgba(4,12,6,.62)');
+  shade.addColorStop(.38, 'rgba(4,12,6,.13)');
+  shade.addColorStop(1, 'rgba(4,12,6,.06)');
+  ctx.fillStyle = shade;
+  ctx.fillRect(0, 0, width, height);
+}
+
 export function drawPrototype(ctx, assets, progress, width, height) {
   ctx.clearRect(0, 0, width, height);
   const mobile = height / width > 1.25;
@@ -74,6 +83,8 @@ export function drawPrototype(ctx, assets, progress, width, height) {
 
   if (mobile) {
     drawCoverPanned(ctx, assets.poster, width, height, .46);
+    drawShade(ctx, width, height);
+    return;
   } else {
     drawCover(ctx, assets.poster, width, height);
   }
@@ -114,10 +125,5 @@ export function drawPrototype(ctx, assets, progress, width, height) {
   ctx.drawImage(assets.mower, -mowerW * .5, -mowerH * .66, mowerW, mowerH);
   ctx.restore();
 
-  const shade = ctx.createLinearGradient(0, 0, width, 0);
-  shade.addColorStop(0, 'rgba(4,12,6,.62)');
-  shade.addColorStop(.38, 'rgba(4,12,6,.13)');
-  shade.addColorStop(1, 'rgba(4,12,6,.06)');
-  ctx.fillStyle = shade;
-  ctx.fillRect(0, 0, width, height);
+  drawShade(ctx, width, height);
 }

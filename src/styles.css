@@ -117,10 +117,10 @@ a { color: inherit; }
   .call-button { grid-column: 3; min-width: 88px; padding: 11px 13px; }
   .intro { padding-inline: 24px; }
   .lawn-story { --story-height: 420vh !important; }
-  .chapter { left: 24px; top: 14vh; bottom: auto; width: calc(100vw - 68px); }
-  .chapter-1, .chapter-2 { left: 24px; right: auto; }
-  .chapter h2 { font-size: clamp(34px, 11vw, 52px); max-width: 92%; }
-  .chapter > p:last-of-type:not(.chapter-eyebrow) { max-width: 86%; font-size: 14px; }
+  .chapter, .chapter-1, .chapter-2 { left: 50%; right: auto; top: 50%; bottom: auto; width: calc(100vw - 64px); text-align: center; transform: translate(-50%, -50%); }
+  .chapter h2 { max-width: none; font-size: clamp(34px, 11vw, 52px); }
+  .chapter > p:last-of-type:not(.chapter-eyebrow) { max-width: 32rem; margin-inline: auto; font-size: 14px; }
+  .chapter .story-button { margin-inline: auto; }
   .progress-indicator { right: 14px; }
   .progress-indicator div { height: 88px; }
   .static-hero { min-height: 70vh; padding: 130px 24px 70px; }
